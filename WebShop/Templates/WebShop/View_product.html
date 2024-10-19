@@ -1,0 +1,46 @@
+{% extends 'WebShop/Header.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Product </title>
+    <style>
+        tr, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<form action="" method="post">
+    <br><br>
+    <h2 align="center">View Booking</h2>
+<table border="1" align="center">
+    <tr>
+        <td>Sl.No</td>
+        <td>Product</td>
+        <td>Quantity</td>
+        <td>Price</td>
+        <td>Total</td>
+        
+    </tr>
+    {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.product.product_name}}</td>
+        <td>{{i.cart_qty}}</td>
+        <td>{{i.product.product_rate }}</td>
+        <td>{{i.booking.booking_amount}}</td>
+       
+        
+        
+    </tr>
+    {% endfor %}
+</form>
+
+</table>
+</body>
+</html>
+{% endblock content %}

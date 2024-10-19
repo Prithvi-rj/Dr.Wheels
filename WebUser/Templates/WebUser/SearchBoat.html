@@ -1,0 +1,80 @@
+{% extends 'WebUser/Header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SearchJob</title>
+</head>
+<br><br>
+<body>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <table align="center">
+            <tr>
+                <td>BoatType</td>
+                <td>
+                    <select name="sel_type" id="sel_type">
+                        <option value="">...Select...</option>
+                        {% for i in category %}
+                        <option value="{{i.id}}">{{i.boattype_name}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                
+                <td colspan="2" align="center">
+                    <input type="submit" name="btnsubmit" value="Search">
+                    <input type="reset" name="btncancel" value="Cancel">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+    <table border="1" align="center" cellpadding="10">
+        <tr>
+            <th>Sl.No</th>
+            <th>Type</th>
+            <th>BoatName</th>
+            <tH>Details</tH>
+            <th>Rate</th>
+            <tH>Owner</tH>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Place</th>
+            <th>Photo</th>
+           <th>Proof</th>
+            <th>Action</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.boattype.boattype_name}}</td>
+            <td>{{i.boat_name}}</td>
+            <td>{{i.boat_details}}</td>
+            <td>{{i.boat_rate}}</td>
+            <td>{{i.owner.owner_name}}</td>
+            <td>{{i.owner.owner_contact}}</td>
+            <td>{{i.owner.owner_email}}</td>
+            <td>{{i.owner.place.place_name}}</td>
+            <td><img src="{{i.boat_photo.url}}" width="50" height="50" alt=""></td>
+            <td><a href="{{i.boat_proof.url}}" download><img src="{{i.boat_proof.url}}" width="50" height="50" alt=""></a></td>
+            <td><a href="{% url 'WebUser:requestBoatService' i.id %}">SendRequest</a></td>
+           
+        </tr>
+        {% endfor %}
+
+    </table>
+    
+    
+
+</body>
+</html>
+
+
+{% endblock content%}

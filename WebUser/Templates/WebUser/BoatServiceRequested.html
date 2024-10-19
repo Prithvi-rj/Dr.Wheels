@@ -1,0 +1,61 @@
+{% extends 'WebUser/Header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SearchJob</title>
+</head>
+<br><br>
+<body>
+    
+   
+    <a href="{% url 'WebUser:requestBoatServiceList' %}">NewRequest</a>/<a href="{% url 'WebUser:requestBoatServiceListAccepted' %}">ListAccepted</a>/<a href="{% url 'WebUser:requestBoatServiceListRejected' %}">ListRejected</a>
+
+    <table border="1" align="center" cellpadding="10">
+        <tr>
+            <th>Sl.No</th>
+            <th>BoatType</th>
+            <th>BoatName</th>
+            <tH>Details</tH>
+            <th>Rate</th>
+            <tH>Owner</tH>
+            <th>Contact</th>
+            <th>Email</th>
+          
+            <th>Message</th>
+           <th>RequestedDate</th>
+           <th>ToDate</th>
+            <th>Action</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.boat.boattype.boattype_name}}</td>
+            <td>{{i.boat.boat_name}}</td>
+            <td>{{i.boat.boat_details}}</td>
+            <td>{{i.boat.boat_rate}}</td>
+            <td>{{i.boat.owner.owner_name}}</td>
+            <td>{{i.boat.owner.owner_contact}}</td>
+            <td>{{i.boat.owner.owner_email}}</td>
+            <td>{{i.request_message}}</td>
+            <td>{{i.request_postdate}}</td>
+            <td>{{i.request_todate}}</td>
+            
+            
+            <td><a href="{% url 'WebUser:delBoatRequest' i.id %}">Delete</a></td>
+           
+        </tr>
+        {% endfor %}
+
+    </table>
+    
+    
+
+</body>
+</html>
+
+
+{% endblock content%}

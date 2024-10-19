@@ -1,0 +1,67 @@
+{% extends 'WebUser/Header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+   
+    <table border="1" align="center" cellpadding="10">
+       
+        <tr>
+            <td>Type</td>
+            <td>{{userdata.servicetype.servicetype_name}}</td>
+        </tr>
+        <tr>
+            <td>ServiceName</td>
+            <td>{{userdata.service_name}}</td>
+        </tr>
+        <tr>
+            <td>Details</td>
+            <td>{{userdata.service_details}}</td>
+        </tr>
+        <tr>
+            <td>Rate</td>
+            <td>{{userdata.service_rate}}</td>
+        </tr>
+  
+        <tr>
+            <td>WorkShop</td>
+            <td>{{userdata.workshop.workshop_name}}</td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td>{{userdata.workshop.workshop_contact}}</td>
+        </tr>
+       
+   
+    </table>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table align="center">
+            
+            <tr>
+                <td>Message</td>
+                <td><textarea name="txtmsg" rows="3" cols="22"></textarea></td>
+            </tr>
+         
+            <tr>
+                
+                <td colspan="2" align="center">
+                    <input type="submit" name="btnsubmit" value="Save">
+                    <input type="reset" name="btncancel" value="Cancel">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>
+
+
+{% endblock content%}

@@ -1,0 +1,54 @@
+{% extends 'WebWorkShop/Header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtistList</title>
+</head>
+<body>
+    
+   
+     
+
+    
+    <table border="1" align="center" cellpadding="10">
+        <tr>
+            <th>Sl.No</th>
+            <th>Name</th>
+            <th>Contact</th>
+          
+            <th>Email</th>
+            <th>Photo</th>
+            <th>Proof</th>
+            <th>District</th>
+            <th>Place</th>
+         
+            <th>Action</th>
+        </tr>
+        {% for i in userdata %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.mechanic_name}}</td>
+            <td>{{i.mechanic_contact}}</td>
+           
+            <td>{{i.mechanic_email}}</td>
+            <td><img src="{{i.mechanic_photo.url}}" width="50" height="50" alt=""></td>
+            <td><a href="{{i.mechanic_proof.url}}" download><img src="{{i.mechanic_proof.url}}" width="50" height="50" alt=""></a></td>
+            <td>{{i.place.district.district_name}}</td>
+            <td>{{i.place.place_name}}</td>
+         
+          
+            <td>
+                <a href="{% url 'WebWorkShop:acceptmechanic' i.id %}">Accept</a>
+                <a href="{% url 'WebWorkShop:rejectmechanic' i.id %}">Reject</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</body>
+</html>
+{% endblock content %}

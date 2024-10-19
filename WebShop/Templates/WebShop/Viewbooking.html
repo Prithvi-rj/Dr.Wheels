@@ -1,0 +1,50 @@
+{% extends 'WebShop/Header.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Booking </title>
+    <style>
+        tr, td {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<form action="" method="post">
+    <br><br>
+    <h2 align="center">View Booking</h2>
+<table border="1" align="center">
+    <tr>
+        <td>Sl.No</td>
+        <td>User</td>
+        <td>Contact</td>
+        <td>Amount</td>
+        <td>Date</td>
+        <td>Action</td>
+    
+    </tr>
+    {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.user.user_name}}{{i.owner.owner_name}}</td>
+        <td>{{i.user.user_contact}}{{i.owner.owner_contact}}</td>
+        <td>{{i.booking_amount}}</td>
+        <td>{{i.boking_date}}</td>
+        <td>
+            <a href="{% url 'WebShop:viewproduct' i.id  %}">View Product</a>
+            <a href="{% url 'WebShop:orderPlacedURL' i.id %}">OrderPlaced</a>
+            
+        </td>
+        
+    </tr>
+    {% endfor %}
+</form>
+
+</table>
+</body>
+</html>
+{% endblock content %}

@@ -1,0 +1,60 @@
+{% extends 'WebOwner/Header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SearchJob</title>
+</head>
+<br><br>
+<body>
+    
+    <a href="{% url 'WebOwner:requestServiceListOwner' %}">NewRequest</a>/<a href="{% url 'WebOwner:requestServiceListAcceptedOwner' %}">ServiceListAccepted</a>/<a href="{% url 'WebOwner:requestServiceListRejectedOwner' %}">ServiceListRejected</a>/<a href="{% url 'WebOwner:requestServiceListCompletedOwner' %}">Completed</a>
+
+
+    <table border="1" align="center" cellpadding="10">
+        <tr>
+            <th>Sl.No</th>
+            <th>ServceType</th>
+            <th>ServiceName</th>
+            <tH>Details</tH>
+            <th>ServiceRate</th>
+            <tH>WorkShop</tH>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Place</th>
+            <th>Message</th>
+           <th>RequestedDate</th>
+           
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.service.servicetype.servicetype_name}}</td>
+            <td>{{i.service.service_name}}</td>
+            <td>{{i.service.service_details}}</td>
+            <td>{{i.service.service_rate}}</td>
+            <td>{{i.service.workshop.workshop_name}}</td>
+            <td>{{i.service.workshop.workshop_contact}}</td>
+            <td>{{i.service.workshop.workshop_email}}</td>
+            <td>{{i.service.workshop.place.place_name}}</td>
+            <td>{{i.request_message}}</td>
+            <td>{{i.request_postdate}}</td>
+            
+            
+           
+           
+        </tr>
+        {% endfor %}
+
+    </table>
+    
+    
+
+</body>
+</html>
+
+
+{% endblock content%}
